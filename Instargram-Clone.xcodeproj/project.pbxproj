@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6110C95A2182565D5842A29C /* Pods_Instargram_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B414208D33056FEFB17FDEE1 /* Pods_Instargram_Clone.framework */; };
+		D41299AE28E2223300F550EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41299AD28E2223300F550EB /* AppDelegate.swift */; };
+		D41299B028E2223300F550EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41299AF28E2223300F550EB /* SceneDelegate.swift */; };
+		D41299B528E2223300F550EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41299B328E2223300F550EB /* Main.storyboard */; };
+		D41299B728E2223400F550EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41299B628E2223400F550EB /* Assets.xcassets */; };
+		D41299BA28E2223400F550EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41299B828E2223400F550EB /* LaunchScreen.storyboard */; };
+		D41299C528E224D600F550EB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41299C428E224D600F550EB /* LoginVC.swift */; };
+		D41299C828E2274A00F550EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41299C728E2274A00F550EB /* Extensions.swift */; };
+		D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480818828E4AF2400540F3C /* SignUpVC.swift */; };
+		D480818F28E5FB0700540F3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D480818E28E5FB0700540F3C /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		37BDEC5776CBD4ACB8E9CDCF /* Pods-Instargram-Clone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.release.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.release.xcconfig"; sourceTree = "<group>"; };
+		B414208D33056FEFB17FDEE1 /* Pods_Instargram_Clone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instargram_Clone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41299AA28E2223300F550EB /* Instargram-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instargram-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D41299AD28E2223300F550EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D41299AF28E2223300F550EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D41299B428E2223300F550EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D41299B628E2223400F550EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D41299B928E2223400F550EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D41299BB28E2223400F550EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D41299C428E224D600F550EB /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D41299C728E2274A00F550EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D480818828E4AF2400540F3C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		D480818E28E5FB0700540F3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D41299A728E2223300F550EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6110C95A2182565D5842A29C /* Pods_Instargram_Clone.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F6D422FCCCDB96C7D3C58F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */,
+				37BDEC5776CBD4ACB8E9CDCF /* Pods-Instargram-Clone.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C9AF3C5732DB904D79A9A52C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B414208D33056FEFB17FDEE1 /* Pods_Instargram_Clone.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D41299A128E2223300F550EB = {
+			isa = PBXGroup;
+			children = (
+				D41299AC28E2223300F550EB /* Instargram-Clone */,
+				D41299AB28E2223300F550EB /* Products */,
+				2F6D422FCCCDB96C7D3C58F5 /* Pods */,
+				C9AF3C5732DB904D79A9A52C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D41299AB28E2223300F550EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D41299AA28E2223300F550EB /* Instargram-Clone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D41299AC28E2223300F550EB /* Instargram-Clone */ = {
+			isa = PBXGroup;
+			children = (
+				D41299C628E2272900F550EB /* Utils */,
+				D41299C328E2248900F550EB /* Model */,
+				D41299C228E2247F00F550EB /* View */,
+				D41299C128E223DF00F550EB /* Controller */,
+				D41299AD28E2223300F550EB /* AppDelegate.swift */,
+				D41299AF28E2223300F550EB /* SceneDelegate.swift */,
+				D41299B328E2223300F550EB /* Main.storyboard */,
+				D41299B628E2223400F550EB /* Assets.xcassets */,
+				D41299B828E2223400F550EB /* LaunchScreen.storyboard */,
+				D41299BB28E2223400F550EB /* Info.plist */,
+				D480818E28E5FB0700540F3C /* GoogleService-Info.plist */,
+			);
+			path = "Instargram-Clone";
+			sourceTree = "<group>";
+		};
+		D41299C128E223DF00F550EB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D41299C428E224D600F550EB /* LoginVC.swift */,
+				D480818828E4AF2400540F3C /* SignUpVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D41299C228E2247F00F550EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D41299C328E2248900F550EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D41299C628E2272900F550EB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D41299C728E2274A00F550EB /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D41299A928E2223300F550EB /* Instargram-Clone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D41299BE28E2223400F550EB /* Build configuration list for PBXNativeTarget "Instargram-Clone" */;
+			buildPhases = (
+				AFFE116C73B9B1C0D9053E6C /* [CP] Check Pods Manifest.lock */,
+				D41299A628E2223300F550EB /* Sources */,
+				D41299A728E2223300F550EB /* Frameworks */,
+				D41299A828E2223300F550EB /* Resources */,
+				E4AF730D0B93A01ED654CA91 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Instargram-Clone";
+			productName = "Instargram-Clone";
+			productReference = D41299AA28E2223300F550EB /* Instargram-Clone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41299A228E2223300F550EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					D41299A928E2223300F550EB = {
+						CreatedOnToolsVersion = 13.4;
+					};
+				};
+			};
+			buildConfigurationList = D41299A528E2223300F550EB /* Build configuration list for PBXProject "Instargram-Clone" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D41299A128E2223300F550EB;
+			productRefGroup = D41299AB28E2223300F550EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D41299A928E2223300F550EB /* Instargram-Clone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D41299A828E2223300F550EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41299BA28E2223400F550EB /* LaunchScreen.storyboard in Resources */,
+				D480818F28E5FB0700540F3C /* GoogleService-Info.plist in Resources */,
+				D41299B728E2223400F550EB /* Assets.xcassets in Resources */,
+				D41299B528E2223300F550EB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AFFE116C73B9B1C0D9053E6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Instargram-Clone-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4AF730D0B93A01ED654CA91 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D41299A628E2223300F550EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D41299AE28E2223300F550EB /* AppDelegate.swift in Sources */,
+				D41299B028E2223300F550EB /* SceneDelegate.swift in Sources */,
+				D41299C528E224D600F550EB /* LoginVC.swift in Sources */,
+				D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */,
+				D41299C828E2274A00F550EB /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D41299B328E2223300F550EB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D41299B428E2223300F550EB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D41299B828E2223400F550EB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D41299B928E2223400F550EB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D41299BC28E2223400F550EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D41299BD28E2223400F550EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D41299BF28E2223400F550EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 23DK26FW4N;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Instargram-Clone/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.choijaegwon.Instargram-Clone";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D41299C028E2223400F550EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 37BDEC5776CBD4ACB8E9CDCF /* Pods-Instargram-Clone.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 23DK26FW4N;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Instargram-Clone/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.choijaegwon.Instargram-Clone";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D41299A528E2223300F550EB /* Build configuration list for PBXProject "Instargram-Clone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D41299BC28E2223400F550EB /* Debug */,
+				D41299BD28E2223400F550EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D41299BE28E2223400F550EB /* Build configuration list for PBXNativeTarget "Instargram-Clone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D41299BF28E2223400F550EB /* Debug */,
+				D41299C028E2223400F550EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41299A228E2223300F550EB /* Project object */;
+}
