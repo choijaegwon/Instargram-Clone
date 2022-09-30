@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 루트 뷰 설정
         window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: LoginVC())
+
+        // 홈 화면이 처음 나오게 설정
+        window?.rootViewController = MainTabVC()
+        
+        // 로그인 화면이 처음 나오게 설정
+        //window?.rootViewController = UINavigationController(rootViewController: LoginVC())
         
         
         return true

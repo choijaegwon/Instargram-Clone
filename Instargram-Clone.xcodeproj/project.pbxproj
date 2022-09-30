@@ -116,14 +116,13 @@
 		D41299C128E223DF00F550EB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D41299C428E224D600F550EB /* LoginVC.swift */,
-				D480818828E4AF2400540F3C /* SignUpVC.swift */,
+				D480819C28E778EA00540F3C /* Loggin */,
+				D480819D28E778F500540F3C /* Feed */,
+				D480819E28E7790F00540F3C /* Search */,
+				D480819F28E7791900540F3C /* UploadPost */,
+				D48081A028E7792400540F3C /* Notifications */,
+				D48081A128E7793000540F3C /* UserProfile */,
 				D480819028E7297E00540F3C /* MainTabVC.swift */,
-				D480819228E72C3600540F3C /* FeedVC.swift */,
-				D480819428E72C5700540F3C /* SearchVC.swift */,
-				D480819628E72C7A00540F3C /* UploadPostVC.swift */,
-				D480819828E72CA100540F3C /* NotificationsVC.swift */,
-				D480819A28E72CB900540F3C /* UserProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -148,6 +147,55 @@
 				D41299C728E2274A00F550EB /* Extensions.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D480819C28E778EA00540F3C /* Loggin */ = {
+			isa = PBXGroup;
+			children = (
+				D41299C428E224D600F550EB /* LoginVC.swift */,
+				D480818828E4AF2400540F3C /* SignUpVC.swift */,
+			);
+			path = Loggin;
+			sourceTree = "<group>";
+		};
+		D480819D28E778F500540F3C /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				D480819228E72C3600540F3C /* FeedVC.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		D480819E28E7790F00540F3C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D480819428E72C5700540F3C /* SearchVC.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		D480819F28E7791900540F3C /* UploadPost */ = {
+			isa = PBXGroup;
+			children = (
+				D480819628E72C7A00540F3C /* UploadPostVC.swift */,
+			);
+			path = UploadPost;
+			sourceTree = "<group>";
+		};
+		D48081A028E7792400540F3C /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D480819828E72CA100540F3C /* NotificationsVC.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		D48081A128E7793000540F3C /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				D480819A28E72CB900540F3C /* UserProfileVC.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -108,9 +108,17 @@ class LoginVC: UIViewController {
             print("Successfully signed user in")
             
             // MainTabVC로 이동
-            let mainTabVC = MainTabVC()
-            mainTabVC.modalPresentationStyle = .fullScreen
-            self.present(mainTabVC, animated: true, completion: nil)
+//            let mainTabVC = MainTabVC()
+//            mainTabVC.modalPresentationStyle = .fullScreen
+//            self.present(mainTabVC, animated: true, completion: nil)
+            guard let mainTabVC = UIApplication.shared.keyWindow?.rootViewController as? MainTabVC else { return }
+            
+            // configure view controllers in maintabvc
+            mainTabVC.configureViewController()
+            
+            // dismiss login controller
+            self.dismiss(animated: true, completion: nil)
+            
         }
         
     }

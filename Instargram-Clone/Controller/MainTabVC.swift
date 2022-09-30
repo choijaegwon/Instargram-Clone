@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MainTabVC: UITabBarController, UITabBarControllerDelegate {
 
@@ -17,6 +18,9 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
         
         // configure view controllers
         configureViewController()
+        
+        // user validation
+        checkIfUserIsLoggedIn()
     }
 
     // function to create view controllers that exist within tab bar controller
@@ -57,5 +61,20 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
         return navController
     }
     
+    func checkIfUserIsLoggedIn() {
+        
+        // 로그인이 되어있지 않으면
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                // present login controller
+                let loginVC = LoginVC()
+                let navController = UINavigationController(rootViewController: loginVC)
+                navController.modalPresentationStyle = .fullScreen
+                self.present(navController, animated: true, completion: nil)
+            }
+            return
+        }
+        
+    }
 
 }

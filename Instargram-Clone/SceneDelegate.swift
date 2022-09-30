@@ -16,7 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 루트뷰설정
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UINavigationController(rootViewController: LoginVC())
+            // 홈 화면이 처음 나오게 설정
+            window.rootViewController = MainTabVC()
+            
+            // 로그인 화면이 처음 나오게 설정
+            //window.rootViewController = UINavigationController(rootViewController: LoginVC())
             self.window = window
             window.makeKeyAndVisible()
         }
