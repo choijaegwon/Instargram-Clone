@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
     
@@ -29,6 +30,7 @@ class LoginVC: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         return tf
     }()
     
@@ -39,6 +41,8 @@ class LoginVC: UIViewController {
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
         tf.font = UIFont.systemFont(ofSize: 14)
+        tf.isSecureTextEntry = true
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         return tf
     }()
     
@@ -48,6 +52,8 @@ class LoginVC: UIViewController {
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.isEnabled = false
         button.layer.cornerRadius = 5
         return button
     }()
@@ -76,10 +82,57 @@ class LoginVC: UIViewController {
         dontHaveAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottm: 0, paddingRight: 0, width: 0, height: 50)
     }
     
-    // MARK: - SignUpVC로 이동하는 코드
+    // MARK: - objc
     @objc func handleShowSignUp() {
         let signUpVC = SignUpVC()
         navigationController?.pushViewController(signUpVC, animated: true)
+    }
+    
+    @objc func handleLogin() {
+        
+        // properties
+        guard
+            let email =  emailTextField.text,
+            let password = passwordTextField.text else { return }
+        
+        // sign user in with email and password
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            // handle error
+            if let error = error {
+                print("Unable to sign user in with error", error.localizedDescription)
+                return
+            }
+            
+            // handle success
+            print("Successfully signed user in")
+            
+            // MainTabVC로 이동
+            let mainTabVC = MainTabVC()
+            mainTabVC.modalPresentationStyle = .fullScreen
+            self.present(mainTabVC, animated: true, completion: nil)
+        }
+        
+    }
+    
+    // text필드에 값이 있는지 확인해주는 메소드
+    @objc func formValidation() {
+        
+        // ensures that email and password test fields have text
+        guard
+            emailTextField.hasText,
+            passwordTextField.hasText else {
+            
+            // handle case for above conditions not met
+            loginButton.isEnabled = false
+            loginButton.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+            return
+        }
+        
+        // handle case for conditions were met
+        loginButton.isEnabled = true
+        loginButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        
     }
     
     func configureViewComponents() {
