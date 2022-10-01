@@ -23,6 +23,7 @@
 		D480819728E72C7A00540F3C /* UploadPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480819628E72C7A00540F3C /* UploadPostVC.swift */; };
 		D480819928E72CA100540F3C /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480819828E72CA100540F3C /* NotificationsVC.swift */; };
 		D480819B28E72CB900540F3C /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480819A28E72CB900540F3C /* UserProfileVC.swift */; };
+		D48081A328E84AD500540F3C /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A228E84AD500540F3C /* UserProfileHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		D480819628E72C7A00540F3C /* UploadPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostVC.swift; sourceTree = "<group>"; };
 		D480819828E72CA100540F3C /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
 		D480819A28E72CB900540F3C /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		D48081A228E84AD500540F3C /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				D480819A28E72CB900540F3C /* UserProfileVC.swift */,
+				D48081A228E84AD500540F3C /* UserProfileHeader.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				D480819728E72C7A00540F3C /* UploadPostVC.swift in Sources */,
 				D480819928E72CA100540F3C /* NotificationsVC.swift in Sources */,
 				D480819528E72C5700540F3C /* SearchVC.swift in Sources */,
+				D48081A328E84AD500540F3C /* UserProfileHeader.swift in Sources */,
 				D480819B28E72CB900540F3C /* UserProfileVC.swift in Sources */,
 				D41299AE28E2223300F550EB /* AppDelegate.swift in Sources */,
 				D480819328E72C3600540F3C /* FeedVC.swift in Sources */,
