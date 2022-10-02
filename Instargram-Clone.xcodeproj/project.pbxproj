@@ -25,6 +25,7 @@
 		D480819B28E72CB900540F3C /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480819A28E72CB900540F3C /* UserProfileVC.swift */; };
 		D48081A328E84AD500540F3C /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A228E84AD500540F3C /* UserProfileHeader.swift */; };
 		D48081A528E9788900540F3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A428E9788900540F3C /* User.swift */; };
+		D48081A728E9C13B00540F3C /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A628E9C13B00540F3C /* SearchUserCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		D480819A28E72CB900540F3C /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		D48081A228E84AD500540F3C /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		D48081A428E9788900540F3C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D48081A628E9C13B00540F3C /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				D48081A228E84AD500540F3C /* UserProfileHeader.swift */,
+				D48081A628E9C13B00540F3C /* SearchUserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D48081A728E9C13B00540F3C /* SearchUserCell.swift in Sources */,
 				D48081A528E9788900540F3C /* User.swift in Sources */,
 				D480819728E72C7A00540F3C /* UploadPostVC.swift in Sources */,
 				D480819928E72CA100540F3C /* NotificationsVC.swift in Sources */,
