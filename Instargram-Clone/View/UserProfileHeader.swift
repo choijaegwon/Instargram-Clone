@@ -11,8 +11,13 @@ class UserProfileHeader: UICollectionViewCell {
     
     var user: User? {
         didSet {
+            // 사용자 이름불러오기
             let fullName = user?.name
             nameLabel.text = fullName
+            
+            // 사용자의 이미지 불러오기
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+            profileImageView.loadImage(with: profileImageUrl)
         }
     }
     
