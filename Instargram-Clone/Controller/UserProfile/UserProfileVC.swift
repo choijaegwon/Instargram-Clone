@@ -56,13 +56,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! UserProfileHeader
         
         // set the user in header
-        let currentUid = Auth.auth().currentUser?.uid
-        
-        Database.database().reference().child("users").child(currentUid!).observeSingleEvent(of: .value) { (snapshot) in
-            guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
-            let uid = snapshot.key
-            let user = User(uid: uid, dictionary: dictionary)
-            self.navigationItem.title = user.username
+        if let user = self.user {
             header.user = user
         }
         
@@ -82,11 +76,17 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     func fetchCurrentUserData() {
         
-        // 로그인한 사용자 uid 가져오기.
-        //guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
         
-        // 로그인한 사용자의 username값 가져와서 nav.title에 입력하기
-        
+        Database.database().reference().child("users").child(currentUid).observeSingleEvent(of: .value) { (snapshot) in
+            guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
+            let uid = snapshot.key
+            let user = User(uid: uid, dictionary: dictionary)
+            self.user = user
+            self.navigationItem.title = user.username
+            self.collectionView.reloadData()
+            
+        }
     }
 
 
