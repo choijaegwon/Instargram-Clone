@@ -16,6 +16,9 @@ class UserProfileHeader: UICollectionViewCell {
             // configure edit profile button
             configureEditProfileFollowButton()
             
+            // set user stats
+            setUserStats(for: user)
+            
             // 사용자 이름불러오기
             let fullName = user?.name
             nameLabel.text = fullName
@@ -58,11 +61,6 @@ class UserProfileHeader: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
-        
-        let attributedText = NSMutableAttributedString(string: "5\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
-        
-        label.attributedText = attributedText
         return label
     }()
     
@@ -142,6 +140,47 @@ class UserProfileHeader: UICollectionViewCell {
 
     }
     
+    func setUserStats(for user: User?) {
+        
+        guard let uid = user?.uid else { return }
+        
+        var numberOfFollwers: Int!
+        var numberOfFollowing: Int!
+        
+        // get number of followers
+        USER_FOLLOWER_REF.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let snapshot = snapshot.value as? Dictionary<String, AnyObject> {
+                numberOfFollwers = snapshot.count
+            } else {
+                numberOfFollwers = 0
+            }
+            
+            let attributedText = NSMutableAttributedString(string: "\(numberOfFollwers!)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            attributedText.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+            
+            self.followersLabel.attributedText = attributedText
+        }
+        
+        // get number of following
+        USER_FOLLOWING_REF.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            
+            if let snapshot = snapshot.value as? Dictionary<String, AnyObject> {
+                numberOfFollowing = snapshot.count
+            } else {
+                numberOfFollowing = 0
+            }
+            
+            
+            
+            let attributedText = NSMutableAttributedString(string: "\(numberOfFollowing!)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            attributedText.append(NSAttributedString(string: "followering", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+            
+            self.followingLabel.attributedText = attributedText
+        }
+        
+    }
+    
     func configureBottomToolBar() {
         
         let topDividerView = UIView()
@@ -179,9 +218,17 @@ class UserProfileHeader: UICollectionViewCell {
         } else {
             
             // configure button as follow button
-            editProfileFollowButton.setTitle("Follow", for: .normal)
             editProfileFollowButton.setTitleColor(.white, for: .normal)
             editProfileFollowButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+            
+            user.checkIfUserIsFollwed { (followed) in
+                
+                if followed {
+                    self.editProfileFollowButton.setTitle("Following", for: .normal)
+                } else {
+                    self.editProfileFollowButton.setTitle("Follow", for: .normal)
+                }
+            }
         }
     }
     
