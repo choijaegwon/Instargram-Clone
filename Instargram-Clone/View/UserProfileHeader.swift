@@ -78,7 +78,7 @@ class UserProfileHeader: UICollectionViewCell {
         return label
     }()
     
-    let editProfileFollowButton: UIButton = {
+    lazy var editProfileFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.cornerRadius = 3
@@ -86,6 +86,7 @@ class UserProfileHeader: UICollectionViewCell {
         button.layer.borderWidth = 0.5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(handleEditProfileFollow), for: .touchUpInside)
         return button
     }()
     
@@ -181,6 +182,22 @@ class UserProfileHeader: UICollectionViewCell {
             editProfileFollowButton.setTitle("Follow", for: .normal)
             editProfileFollowButton.setTitleColor(.white, for: .normal)
             editProfileFollowButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        }
+    }
+    
+    @objc func handleEditProfileFollow() {
+        guard let user = self.user else { return }
+        
+        if editProfileFollowButton.titleLabel?.text == "Edit Profile" {
+            print("handle edit profile")
+        } else {
+            if editProfileFollowButton.titleLabel?.text == "Follow" {
+                editProfileFollowButton.setTitle("Following", for: .normal)
+                user.follow()
+            } else {
+                editProfileFollowButton.setTitle("Follow", for: .normal)
+                user.unfollow()
+            }
         }
     }
     
