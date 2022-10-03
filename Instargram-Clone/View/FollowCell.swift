@@ -1,28 +1,15 @@
 //
-//  SearchUserCell.swift
+//  FollowCell.swift
 //  Instargram-Clone
 //
-//  Created by Jae kwon Choi on 2022/10/02.
+//  Created by Jae kwon Choi on 2022/10/03.
 //
 
 import UIKit
 
-class SearchUserCell: UITableViewCell {
-
+class FollowCell: UITableViewCell {
+    
     // MARK: - Properties
-    var user: User? {
-        didSet{
-            guard let profileImageUrl = user?.profileImageUrl else { return }
-            guard let username = user?.username else { return }
-            guard let fullName = user?.name else { return }
-            
-            profileImageView.loadImage(with: profileImageUrl)
-            
-            self.textLabel?.text = username
-            self.detailTextLabel?.text = fullName
-        }
-    }
-
     let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -31,19 +18,42 @@ class SearchUserCell: UITableViewCell {
         return iv
     }()
     
+    lazy var followButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Loading", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        button.addTarget(self, action: #selector(handleFollowTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    // MARK: - Handlers
+    
+    @objc func handleFollowTapped() {
+        print("Handle follow here...")
+    }
+
+    
+    // MARK: - Init
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
-        // add profile image view
         addSubview(profileImageView)
         profileImageView.anchor(top: nil, left: leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottm: 0, paddingRight: 0, width: 48, height: 48)
         // 가운데 설정
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         profileImageView.layer.cornerRadius = 48 / 2
         
-        self.textLabel?.text = "Username"
+        addSubview(followButton)
+        followButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottm: 0, paddingRight: 12, width: 90, height: 30)
+        // 버튼을 Y축의 가운대로 설정
+        followButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        followButton.layer.cornerRadius = 3
         
-        self.detailTextLabel?.text = "Full name"
+        textLabel?.text = "Username"
+        detailTextLabel?.text = "Full name"
+        
     }
     
     override func layoutSubviews() {
@@ -57,8 +67,9 @@ class SearchUserCell: UITableViewCell {
         detailTextLabel?.font = UIFont.systemFont(ofSize: 12)
     }
     
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }
