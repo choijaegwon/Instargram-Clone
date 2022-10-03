@@ -44,6 +44,9 @@ class SearchUserCell: UITableViewCell {
         self.textLabel?.text = "Username"
         
         self.detailTextLabel?.text = "Full name"
+        
+        self.selectionStyle = .none
+    
     }
     
     override func layoutSubviews() {

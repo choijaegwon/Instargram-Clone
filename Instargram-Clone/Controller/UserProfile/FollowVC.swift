@@ -10,7 +10,7 @@ import Firebase
 
 private let reuseIdentifer = "FollowCell"
 
-class FollowVC: UITableViewController {
+class FollowVC: UITableViewController, FollowCellDelegate {
     
     // MARK: - Properties
     
@@ -57,9 +57,51 @@ class FollowVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifer, for: indexPath) as! FollowCell
         cell.user = users[indexPath.row]
         // 셀 안에 버튼이 안눌려서 추가한 코드
+        cell.delegate = self
         cell.contentView.isUserInteractionEnabled = false
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let user = users[indexPath.row]
+        
+        let userProfileVC = UserProfileVC(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        userProfileVC.user = user
+        
+        navigationController?.pushViewController(userProfileVC, animated: true)
+        
+    }
+    
+    // MARK: - FollowCellDelegate Protocol
+    func handleFollowTapped(for cell: FollowCell) {
+        
+        guard let user = cell.user else { return }
+        
+        if user.isFollowed {
+            user.unfollow()
+            
+            // configure follow button for non followed user
+            cell.followButton.setTitle("Follow", for: .normal)
+            cell.followButton.setTitleColor(.white, for: .normal)
+            cell.followButton.layer.borderWidth = 0
+            cell.followButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+            
+        } else {
+            user.follow()
+            
+            // configure follow button for followed user
+            cell.followButton.setTitle("Following", for: .normal)
+            cell.followButton.setTitleColor(.black, for: .normal)
+            cell.followButton.layer.borderWidth = 0.5
+            cell.followButton.layer.borderColor = UIColor.lightGray.cgColor
+            cell.followButton.backgroundColor = .white
+        }
+    }
+
+    
+    // MARK: - API
     
     func fetchUsers() {
         
@@ -72,18 +114,20 @@ class FollowVC: UITableViewController {
             ref = USER_FOLLOWING_REF
         }
         
-        ref.child(uid).observe(.childAdded) { (snapshot) in
+        ref.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             
-            let userId = snapshot.key
+            guard let allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
             
-            USER_REF.child(userId).observeSingleEvent(of: .value) { (snapshot) in
+            allObjects.forEach { (snapshot) in
                 
-                guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
+                let userId = snapshot.key
                 
-                let user = User(uid: userId, dictionary: dictionary)
-                
-                self.users.append(user)
-                self.tableView.reloadData()
+                Database.fetchUser(with: userId) { (user) in
+                    
+                    self.users.append(user)
+                    
+                    self.tableView.reloadData()
+                }
                 
             }
         }
