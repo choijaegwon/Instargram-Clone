@@ -15,7 +15,8 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
 
     // MARK: - Properties
     
-    var user: User?
+    var currentUser: User?
+    var userToLoadFromSearchVC: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,11 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         self.collectionView.backgroundColor = .white
         
         // fetch user data
-        fetchCurrentUserData()
+        if userToLoadFromSearchVC == nil {
+            fetchCurrentUserData()
+        }
+        
+        
         
     }
    
@@ -56,8 +61,11 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! UserProfileHeader
         
         // set the user in header
-        if let user = self.user {
+        if let user = self.currentUser {
             header.user = user
+        } else if let userToLoadFromSearchVC = self.userToLoadFromSearchVC {
+            header.user = userToLoadFromSearchVC
+            navigationItem.title = userToLoadFromSearchVC.username
         }
         
         // return header
@@ -82,7 +90,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
             guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
             let uid = snapshot.key
             let user = User(uid: uid, dictionary: dictionary)
-            self.user = user
+            self.currentUser = user
             self.navigationItem.title = user.username
             self.collectionView.reloadData()
             
