@@ -10,6 +10,10 @@ import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
     
+    // MARK: - Properties
+
+    var delegate: UserProfileHeaderDelegate?
+    
     var user: User? {
         didSet {
             
@@ -108,25 +112,7 @@ class UserProfileHeader: UICollectionViewCell {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(profileImageView)
-        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottm: 0, paddingRight: 0, width: profileImageSize, height: profileImageSize)
-        // 원모양으로
-        profileImageView.layer.cornerRadius = profileImageSize / 2
-        
-        addSubview(nameLabel)
-        nameLabel.anchor(top: profileImageView.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottm: 0, paddingRight: 0, width: 0, height: 0)
-        
-        configureUserStats()
-        
-        addSubview(editProfileFollowButton)
-        editProfileFollowButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottm: 0, paddingRight: 12, width: 0, height: 30)
-        
-        configureBottomToolBar()
-        
-    }
+    // MARK: - Handlers
     
     func configureUserStats() {
         
@@ -141,44 +127,7 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     func setUserStats(for user: User?) {
-        
-        guard let uid = user?.uid else { return }
-        
-        var numberOfFollwers: Int!
-        var numberOfFollowing: Int!
-        
-        // get number of followers
-        USER_FOLLOWER_REF.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            
-            if let snapshot = snapshot.value as? Dictionary<String, AnyObject> {
-                numberOfFollwers = snapshot.count
-            } else {
-                numberOfFollwers = 0
-            }
-            
-            let attributedText = NSMutableAttributedString(string: "\(numberOfFollwers!)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-            attributedText.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
-            
-            self.followersLabel.attributedText = attributedText
-        }
-        
-        // get number of following
-        USER_FOLLOWING_REF.child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            
-            if let snapshot = snapshot.value as? Dictionary<String, AnyObject> {
-                numberOfFollowing = snapshot.count
-            } else {
-                numberOfFollowing = 0
-            }
-            
-            
-            
-            let attributedText = NSMutableAttributedString(string: "\(numberOfFollowing!)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
-            attributedText.append(NSAttributedString(string: "followering", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
-            
-            self.followingLabel.attributedText = attributedText
-        }
-        
+        delegate?.setUserStats(for: self)
     }
     
     func configureBottomToolBar() {
@@ -233,19 +182,29 @@ class UserProfileHeader: UICollectionViewCell {
     }
     
     @objc func handleEditProfileFollow() {
-        guard let user = self.user else { return }
+        delegate?.handleEditFollowTapped(for: self)
+    }
+    
+    // MARK: - Init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        if editProfileFollowButton.titleLabel?.text == "Edit Profile" {
-            print("handle edit profile")
-        } else {
-            if editProfileFollowButton.titleLabel?.text == "Follow" {
-                editProfileFollowButton.setTitle("Following", for: .normal)
-                user.follow()
-            } else {
-                editProfileFollowButton.setTitle("Follow", for: .normal)
-                user.unfollow()
-            }
-        }
+        addSubview(profileImageView)
+        profileImageView.anchor(top: self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 12, paddingBottm: 0, paddingRight: 0, width: profileImageSize, height: profileImageSize)
+        // 원모양으로
+        profileImageView.layer.cornerRadius = profileImageSize / 2
+        
+        addSubview(nameLabel)
+        nameLabel.anchor(top: profileImageView.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, paddingTop: 12, paddingLeft: 12, paddingBottm: 0, paddingRight: 0, width: 0, height: 0)
+        
+        configureUserStats()
+        
+        addSubview(editProfileFollowButton)
+        editProfileFollowButton.anchor(top: postsLabel.bottomAnchor, left: postsLabel.leftAnchor, bottom: nil, right: self.rightAnchor, paddingTop: 4, paddingLeft: 8, paddingBottm: 0, paddingRight: 12, width: 0, height: 30)
+        
+        configureBottomToolBar()
+        
     }
     
     required init?(coder: NSCoder) {

@@ -27,6 +27,7 @@
 		D48081A528E9788900540F3C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A428E9788900540F3C /* User.swift */; };
 		D48081A728E9C13B00540F3C /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A628E9C13B00540F3C /* SearchUserCell.swift */; };
 		D48081B128EACF0200540F3C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081B028EACF0200540F3C /* Constants.swift */; };
+		D48081B328EAEC8B00540F3C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081B228EAEC8B00540F3C /* Protocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		D48081A428E9788900540F3C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D48081A628E9C13B00540F3C /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		D48081B028EACF0200540F3C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D48081B228EAEC8B00540F3C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 			children = (
 				D41299C728E2274A00F550EB /* Extensions.swift */,
 				D48081B028EACF0200540F3C /* Constants.swift */,
+				D48081B228EAEC8B00540F3C /* Protocols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				D41299C528E224D600F550EB /* LoginVC.swift in Sources */,
 				D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */,
 				D41299C828E2274A00F550EB /* Extensions.swift in Sources */,
+				D48081B328EAEC8B00540F3C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

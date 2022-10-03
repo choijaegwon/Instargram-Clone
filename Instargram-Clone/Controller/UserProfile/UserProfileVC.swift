@@ -11,7 +11,7 @@ import Firebase
 private let reuseIdentifier = "Cell"
 private let headerIdentifier = "UserProfileHeader"
 
-class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, UserProfileHeaderDelegate {
 
     // MARK: - Properties
     
@@ -60,6 +60,9 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         // declare header
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! UserProfileHeader
         
+        // set delegate
+        header.delegate = self
+        
         // set the user in header
         if let user = self.currentUser {
             header.user = user
@@ -80,6 +83,63 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         return cell
     }
 
+    // MARK: - UserProfileHeader Protocol
+    func handleEditFollowTapped(for header: UserProfileHeader) {
+        guard let user = header.user else { return }
+
+        if header.editProfileFollowButton.titleLabel?.text == "Edit Profile" {
+            print("handle edit profile")
+        } else {
+            if header.editProfileFollowButton.titleLabel?.text == "Follow" {
+                header.editProfileFollowButton.setTitle("Following", for: .normal)
+                user.follow()
+            } else {
+                header.editProfileFollowButton.setTitle("Follow", for: .normal)
+                user.unfollow()
+            }
+        }
+    }
+    
+    func setUserStats(for header: UserProfileHeader) {
+        guard let uid = header.user?.uid else { return }
+        
+        var numberOfFollwers: Int!
+        var numberOfFollowing: Int!
+        
+        // get number of followers
+        // observe(.value) -> 데이터베이스에서 변경되는 모든 이벤트를 수신함
+        USER_FOLLOWER_REF.child(uid).observe(.value) { (snapshot) in
+            
+            if let snapshot = snapshot.value as? Dictionary<String, AnyObject> {
+                numberOfFollwers = snapshot.count
+            } else {
+                numberOfFollwers = 0
+            }
+            
+            let attributedText = NSMutableAttributedString(string: "\(numberOfFollwers!)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            attributedText.append(NSAttributedString(string: "followers", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+            
+            header.followersLabel.attributedText = attributedText
+        }
+        
+        // get number of following
+        USER_FOLLOWING_REF.child(uid).observe(.value) { (snapshot) in
+            
+            if let snapshot = snapshot.value as? Dictionary<String, AnyObject> {
+                numberOfFollowing = snapshot.count
+            } else {
+                numberOfFollowing = 0
+            }
+            
+            
+            
+            let attributedText = NSMutableAttributedString(string: "\(numberOfFollowing!)\n", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)])
+            attributedText.append(NSAttributedString(string: "followering", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+            
+            header.followingLabel.attributedText = attributedText
+        }    }
+
+    
     // MARK: - API
     
     func fetchCurrentUserData() {
