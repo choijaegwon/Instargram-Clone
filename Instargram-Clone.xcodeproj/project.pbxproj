@@ -15,6 +15,9 @@
 		D41299BA28E2223400F550EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D41299B828E2223400F550EB /* LaunchScreen.storyboard */; };
 		D41299C528E224D600F550EB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41299C428E224D600F550EB /* LoginVC.swift */; };
 		D41299C828E2274A00F550EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41299C728E2274A00F550EB /* Extensions.swift */; };
+		D47B626C28F01E22007A36AF /* SelectImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B626B28F01E22007A36AF /* SelectImageVC.swift */; };
+		D47B626E28F01F4C007A36AF /* SelectPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */; };
+		D47B627028F01F82007A36AF /* SelectPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */; };
 		D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480818828E4AF2400540F3C /* SignUpVC.swift */; };
 		D480818F28E5FB0700540F3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D480818E28E5FB0700540F3C /* GoogleService-Info.plist */; };
 		D480819128E7297E00540F3C /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480819028E7297E00540F3C /* MainTabVC.swift */; };
@@ -44,6 +47,9 @@
 		D41299BB28E2223400F550EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D41299C428E224D600F550EB /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		D41299C728E2274A00F550EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D47B626B28F01E22007A36AF /* SelectImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageVC.swift; sourceTree = "<group>"; };
+		D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCell.swift; sourceTree = "<group>"; };
+		D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHeader.swift; sourceTree = "<group>"; };
 		D480818828E4AF2400540F3C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		D480818E28E5FB0700540F3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D480819028E7297E00540F3C /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				D48081A228E84AD500540F3C /* UserProfileHeader.swift */,
 				D48081A628E9C13B00540F3C /* SearchUserCell.swift */,
 				D4F3144228EAFCC500C132D5 /* FollowCell.swift */,
+				D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */,
+				D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				D480819628E72C7A00540F3C /* UploadPostVC.swift */,
+				D47B626B28F01E22007A36AF /* SelectImageVC.swift */,
 			);
 			path = UploadPost;
 			sourceTree = "<group>";
@@ -348,10 +357,13 @@
 				D480819128E7297E00540F3C /* MainTabVC.swift in Sources */,
 				D41299B028E2223300F550EB /* SceneDelegate.swift in Sources */,
 				D41299C528E224D600F550EB /* LoginVC.swift in Sources */,
+				D47B626C28F01E22007A36AF /* SelectImageVC.swift in Sources */,
+				D47B627028F01F82007A36AF /* SelectPhotoHeader.swift in Sources */,
 				D4F3144128EAFC2800C132D5 /* FollowVC.swift in Sources */,
 				D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */,
 				D41299C828E2274A00F550EB /* Extensions.swift in Sources */,
 				D4F3144328EAFCC500C132D5 /* FollowCell.swift in Sources */,
+				D47B626E28F01F4C007A36AF /* SelectPhotoCell.swift in Sources */,
 				D48081B328EAEC8B00540F3C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
