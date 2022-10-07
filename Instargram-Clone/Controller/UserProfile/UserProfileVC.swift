@@ -22,7 +22,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         super.viewDidLoad()
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UserPostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView!.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
 
         // background color
@@ -38,7 +38,28 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         
     }
    
-    // MARK: -  UICollectionViewDataSource
+    // MARK: - UICollectionViewFlowLayout
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (view.frame.width - 2) / 3
+        return CGSize(width: width, height: width)
+    }
+    
+    // 지정된 섹션의 헤더뷰의 크기를 반환하는 메서드.
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 200)
+    }
+    
+    
+    // MARK: -  UICollectionView
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -46,13 +67,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-    
-    // 지정된 섹션의 헤더뷰의 크기를 반환하는 메서드.
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 200)
+        return posts.count
     }
     
     // 컬렉션의 헤더 요소를 컬렉션에 선언
@@ -73,9 +88,10 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UserPostCell
     
         // Configure the cell
+        cell.post = posts[indexPath.item]
     
         return cell
     }
@@ -157,9 +173,16 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
     func fetchPosts() {
         
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        var uid: String!
         
-        USER_POSTS_REF.child(currentUid).observe(.childAdded) { snapshot in
+        // 사용자면 내 uid를 활용해서 내피드에 사진을 올리기.
+        if let user = self.user {
+            uid = user.uid
+        } else {
+            uid = Auth.auth().currentUser?.uid
+        }
+        
+        USER_POSTS_REF.child(uid).observe(.childAdded) { snapshot in
             
             let postId = snapshot.key
             POSTS_REF.child(postId).observeSingleEvent(of: .value) { snapshot in
@@ -170,7 +193,12 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
                 
                 self.posts.append(post)
                 
-                print("post caption is \(post.caption)")
+                self.posts.sort { post1, post2 in
+                    return post1.creationDate > post2.creationDate
+                }
+                
+                self.collectionView.reloadData()
+                
                 
             }
         }

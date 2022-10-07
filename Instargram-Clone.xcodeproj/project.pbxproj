@@ -19,6 +19,7 @@
 		D47B626E28F01F4C007A36AF /* SelectPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */; };
 		D47B627028F01F82007A36AF /* SelectPhotoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */; };
 		D47B627228F0758B007A36AF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B627128F0758B007A36AF /* Post.swift */; };
+		D47B627428F080D8007A36AF /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47B627328F080D8007A36AF /* UserPostCell.swift */; };
 		D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480818828E4AF2400540F3C /* SignUpVC.swift */; };
 		D480818F28E5FB0700540F3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D480818E28E5FB0700540F3C /* GoogleService-Info.plist */; };
 		D480819128E7297E00540F3C /* MainTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480819028E7297E00540F3C /* MainTabVC.swift */; };
@@ -52,6 +53,7 @@
 		D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoCell.swift; sourceTree = "<group>"; };
 		D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoHeader.swift; sourceTree = "<group>"; };
 		D47B627128F0758B007A36AF /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		D47B627328F080D8007A36AF /* UserPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostCell.swift; sourceTree = "<group>"; };
 		D480818828E4AF2400540F3C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		D480818E28E5FB0700540F3C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D480819028E7297E00540F3C /* MainTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabVC.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				D4F3144228EAFCC500C132D5 /* FollowCell.swift */,
 				D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */,
 				D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */,
+				D47B627328F080D8007A36AF /* UserPostCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				D480819328E72C3600540F3C /* FeedVC.swift in Sources */,
 				D480819128E7297E00540F3C /* MainTabVC.swift in Sources */,
 				D41299B028E2223300F550EB /* SceneDelegate.swift in Sources */,
+				D47B627428F080D8007A36AF /* UserPostCell.swift in Sources */,
 				D41299C528E224D600F550EB /* LoginVC.swift in Sources */,
 				D47B626C28F01E22007A36AF /* SelectImageVC.swift in Sources */,
 				D47B627028F01F82007A36AF /* SelectPhotoHeader.swift in Sources */,
