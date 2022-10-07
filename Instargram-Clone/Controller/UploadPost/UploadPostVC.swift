@@ -116,6 +116,10 @@ class UploadPostVC: UIViewController, UITextViewDelegate {
                 // upload information to database
                 postId.updateChildValues(values) { err, ref in
                     
+                    guard let postKey = postId.key else { return }
+                    // update user-post structure
+                    USER_POSTS_REF.child(currentUid).updateChildValues([postKey: 1])
+                    
                     // return to home feed
                     self.dismiss(animated: true) {
                         self.tabBarController?.selectedIndex = 0

@@ -16,6 +16,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     // MARK: - Properties
     
     var user: User?
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
             fetchCurrentUserData()
         }
         
-        
+        // fetch posts
+        fetchPosts()
         
     }
    
@@ -152,6 +154,28 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
 
     
     // MARK: - API
+    
+    func fetchPosts() {
+        
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        USER_POSTS_REF.child(currentUid).observe(.childAdded) { snapshot in
+            
+            let postId = snapshot.key
+            POSTS_REF.child(postId).observeSingleEvent(of: .value) { snapshot in
+                
+                guard let dicationary = snapshot.value as? Dictionary<String, AnyObject>  else { return }
+                
+                let post = Post(postId: postId, dictionary: dicationary)
+                
+                self.posts.append(post)
+                
+                print("post caption is \(post.caption)")
+                
+            }
+        }
+        
+    }
     
     func fetchCurrentUserData() {
         
