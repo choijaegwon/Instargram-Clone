@@ -169,7 +169,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             // FirebaseStorage에 폴더명이 profile_images 이다.
             let storageRef = Storage.storage().reference().child("profile_images").child(filename)
             
-            _ = storageRef.putData(uploadData, metadata: nil) { metadata, error in
+            storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                 
                 // handle error
                 if let error = error {
@@ -206,7 +206,7 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                     })
                 }
                 
-            }
+            })
         }
     }
     
