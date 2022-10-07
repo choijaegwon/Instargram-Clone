@@ -47,50 +47,6 @@ extension UIView {
     }
 }
 
-// 캐쉬이미지 여부
-var imageCache = [String: UIImage]()
-
-extension UIImageView {
-    
-    func loadImage(with urlString: String) {
-        
-        // 캐쉬이미지가 존재하는 경우
-        if let cachedImage = imageCache[urlString] {
-            self.image = cachedImage
-            return
-        }
-        
-        // 캐쉬이미지가 존재하지 않는 경우
-        
-        // url for image location
-        guard let url = URL(string: urlString) else { return }
-        
-        // fetch contents of URL
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            // handle error
-            if let error = error {
-                print("Failed to lad image with error", error.localizedDescription)
-            }
-            
-            // image data
-            guard let imageData = data else { return }
-            
-            // create image using image data
-            let photoImage = UIImage(data: imageData)
-            
-            // set key and value for image cache
-            imageCache[url.absoluteString] = photoImage
-            
-            // set image
-            DispatchQueue.main.async {
-                self.image = photoImage
-            }
-        }.resume()
-    }
-    
-}
-
 extension Database {
     static func fetchUser(with uid: String, completion: @escaping(User) -> ()) {
         

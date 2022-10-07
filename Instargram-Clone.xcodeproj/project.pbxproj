@@ -33,6 +33,7 @@
 		D48081A728E9C13B00540F3C /* SearchUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081A628E9C13B00540F3C /* SearchUserCell.swift */; };
 		D48081B128EACF0200540F3C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081B028EACF0200540F3C /* Constants.swift */; };
 		D48081B328EAEC8B00540F3C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48081B228EAEC8B00540F3C /* Protocols.swift */; };
+		D4B7C48828F0BCD90052F3D8 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7C48728F0BCD90052F3D8 /* CustomImageView.swift */; };
 		D4F3144128EAFC2800C132D5 /* FollowVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144028EAFC2800C132D5 /* FollowVC.swift */; };
 		D4F3144328EAFCC500C132D5 /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144228EAFCC500C132D5 /* FollowCell.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		D48081A628E9C13B00540F3C /* SearchUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserCell.swift; sourceTree = "<group>"; };
 		D48081B028EACF0200540F3C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D48081B228EAEC8B00540F3C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		D4B7C48728F0BCD90052F3D8 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		D4F3144028EAFC2800C132D5 /* FollowVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowVC.swift; sourceTree = "<group>"; };
 		D4F3144228EAFCC500C132D5 /* FollowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				D41299C728E2274A00F550EB /* Extensions.swift */,
 				D48081B028EACF0200540F3C /* Constants.swift */,
 				D48081B228EAEC8B00540F3C /* Protocols.swift */,
+				D4B7C48728F0BCD90052F3D8 /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D48081A728E9C13B00540F3C /* SearchUserCell.swift in Sources */,
+				D4B7C48828F0BCD90052F3D8 /* CustomImageView.swift in Sources */,
 				D47B627228F0758B007A36AF /* Post.swift in Sources */,
 				D48081A528E9788900540F3C /* User.swift in Sources */,
 				D480819728E72C7A00540F3C /* UploadPostVC.swift in Sources */,

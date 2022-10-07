@@ -13,13 +13,15 @@ class UserPostCell: UICollectionViewCell {
         
         didSet {
             
+            print("Did set post")
+            
             guard let imageUrl = post?.imageUrl else { return }
             postImageView.loadImage(with: imageUrl)
         }
     }
     
-    let postImageView: UIImageView = {
-        let iv = UIImageView()
+    let postImageView: CustomImageView = {
+        let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
