@@ -46,18 +46,39 @@ class Post {
         }
     }
     
-    func adjustLikes(addLike: Bool) {
+    func adjustLikes(addLike: Bool, completion: @escaping(Int) -> ()) {
+        
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
         
         if addLike {
-            likes = likes + 1
-            didLike = true
+            // updates user-likes structure
+            USER_LIKES_REF.child(currentUid).updateChildValues([postId: 1]) { error, ref in
+                // update post-likes structure
+                POST_LIKES_REF.child(self.postId).updateChildValues([currentUid: 1]) { error, ref in
+                    self.likes = self.likes + 1
+                    self.didLike = true
+                    completion(self.likes)
+                    POSTS_REF.child(self.postId).child("likes").setValue(self.likes)
+                    print("222222\(self.likes)")
+                }
+            }
         } else {
-            guard likes > 0 else { return }
-            likes = likes - 1
-            didLike = false
+            // remove like from user-like structure
+            USER_LIKES_REF.child(currentUid).child(postId).removeValue { error, ref in
+                // remove like from post-like structure
+                POST_LIKES_REF.child(self.postId).child(currentUid).removeValue { error, ref in
+                    guard self.likes > 0 else { return }
+                    self.likes = self.likes - 1
+                    self.didLike = false
+                    completion(self.likes)
+                    POSTS_REF.child(self.postId).child("likes").setValue(self.likes)
+                    print("333\(self.likes)")
+                    
+                }
+            }
         }
         
-        POSTS_REF.child(postId).child("likes").setValue(likes)
+
         
     }
 }
