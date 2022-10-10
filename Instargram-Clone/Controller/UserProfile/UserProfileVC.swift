@@ -95,6 +95,16 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
     
         return cell
     }
+    
+    // 내 프로필에서 하나의 아이템을 클릭했을때 하나만 보기
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let feedVC = FeedVC(collectionViewLayout: UICollectionViewFlowLayout())
+        feedVC.viewSinglePost = true
+        feedVC.post = posts[indexPath.item]
+        navigationController?.pushViewController(feedVC, animated: true)
+        
+    }
 
     // MARK: - UserProfileHeader Protocol
     
