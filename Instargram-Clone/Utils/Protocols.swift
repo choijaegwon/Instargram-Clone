@@ -15,7 +15,7 @@ protocol UserProfileHeaderDelegate {
 }
 
 protocol FollowCellDelegate {
-    func handleFollowTapped(for cell: FollowCell)
+    func handleFollowTapped(for cell: FollowLikeCell)
 }
 
 protocol FeedCellDelegate {

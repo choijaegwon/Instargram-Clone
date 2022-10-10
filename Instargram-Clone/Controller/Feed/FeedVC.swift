@@ -126,7 +126,12 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, Fe
     }
     
     func handleShowLikes(for cell: FeedCell) {
-        print("Handle show likes here")
+        guard let post = cell.post else { return }
+        guard let postId = post.postId else { return }
+        let followLikeVC = FollowLikeVC()
+        followLikeVC.viewingMode = FollowLikeVC.ViewingMode(index: 2)
+        followLikeVC.postId = postId
+        navigationController?.pushViewController(followLikeVC, animated: true)
     }
     
     func handleConfigureLikeButton(for cell: FeedCell) {
