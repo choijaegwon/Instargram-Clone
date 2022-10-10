@@ -59,7 +59,6 @@ class Post {
                     self.didLike = true
                     completion(self.likes)
                     POSTS_REF.child(self.postId).child("likes").setValue(self.likes)
-                    print("222222\(self.likes)")
                 }
             }
         } else {
@@ -72,8 +71,6 @@ class Post {
                     self.didLike = false
                     completion(self.likes)
                     POSTS_REF.child(self.postId).child("likes").setValue(self.likes)
-                    print("333\(self.likes)")
-                    
                 }
             }
         }
