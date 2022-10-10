@@ -165,7 +165,10 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, Fe
     // MARK: - API
     
     func fetchPosts() {
-        POSTS_REF.observe(.childAdded) { snapshot in
+        
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        
+        USER_FEED_REF.child(currentUid).observe(.childAdded) { snapshot in
             
             let postId = snapshot.key
             
