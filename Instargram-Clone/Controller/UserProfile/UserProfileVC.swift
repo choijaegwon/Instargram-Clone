@@ -185,12 +185,8 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         USER_POSTS_REF.child(uid).observe(.childAdded) { snapshot in
             
             let postId = snapshot.key
-            POSTS_REF.child(postId).observeSingleEvent(of: .value) { snapshot in
-                
-                guard let dicationary = snapshot.value as? Dictionary<String, AnyObject>  else { return }
-                
-                let post = Post(postId: postId, dictionary: dicationary)
-                
+            
+            Database.fetchPost(with: postId) { post in
                 self.posts.append(post)
                 
                 self.posts.sort { post1, post2 in
@@ -198,8 +194,6 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
                 }
                 
                 self.collectionView.reloadData()
-                
-                
             }
         }
         

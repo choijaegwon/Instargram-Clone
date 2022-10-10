@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 private let reuseIdentifier = "Cell"
 
-class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, FeedCellDelegate {
 
     // MARK: - Properties
     
@@ -62,8 +63,31 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FeedCell
+        cell.delegate = self
         cell.post = posts[indexPath.row]
         return cell
+    }
+    
+    // MARK: - FeedCellDelegate Protocol
+    
+    func handleUsernameTapped(for cell: FeedCell) {
+        
+        guard let post = cell.post else { return }
+        let userProfileVC = UserProfileVC(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfileVC.user = post.user
+        navigationController?.pushViewController(userProfileVC, animated: true)
+    }
+    
+    func handleOptionsTapped(for cell: FeedCell) {
+        print(#function)
+    }
+    
+    func handleLikeTapped(for cell: FeedCell) {
+        print(#function)
+    }
+    
+    func handleCommentTapped(for cell: FeedCell) {
+        print(#function)
     }
 
     // MARK: - Handlers
@@ -126,19 +150,13 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
             
             let postId = snapshot.key
             
-            guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
-            
-            let post = Post(postId: postId, dictionary: dictionary)
-            
-            self.posts.append(post)
-            self.posts.sort { post1, post2 in
-                return post1.creationDate > post2.creationDate
+            Database.fetchPost(with: postId) { post in
+                self.posts.append(post)
+                self.posts.sort { post1, post2 in
+                    return post1.creationDate > post2.creationDate
+                }
+                self.collectionView.reloadData()
             }
-            self.collectionView.reloadData()
         }
     }
-
-
-
-    
 }
