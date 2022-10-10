@@ -49,10 +49,12 @@ class Post {
     func adjustLikes(addLike: Bool, completion: @escaping(Int) -> ()) {
         
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard let postId = postId else { return }
         
         if addLike {
             // updates user-likes structure
             USER_LIKES_REF.child(currentUid).updateChildValues([postId: 1]) { error, ref in
+                
                 // update post-likes structure
                 POST_LIKES_REF.child(self.postId).updateChildValues([currentUid: 1]) { error, ref in
                     self.likes = self.likes + 1
@@ -64,6 +66,7 @@ class Post {
         } else {
             // remove like from user-like structure
             USER_LIKES_REF.child(currentUid).child(postId).removeValue { error, ref in
+                
                 // remove like from post-like structure
                 POST_LIKES_REF.child(self.postId).child(currentUid).removeValue { error, ref in
                     guard self.likes > 0 else { return }
