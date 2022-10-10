@@ -104,16 +104,20 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, Fe
         print(#function)
     }
     
-    func handleLikeTapped(for cell: FeedCell) {
+    func handleLikeTapped(for cell: FeedCell, isDoubleTap: Bool) {
         guard let post = cell.post else { return }
         
         // 이미 좋아요가 눌렸다면 false로 바꾸고 없었다면 true로 바꾸기
         if post.didLike {
-            post.adjustLikes(addLike: false) { likes in
-                cell.likesLabel.text = "\(likes) likes"
-                cell.likeButton.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+            // handle unlike post
+            if !isDoubleTap {
+                post.adjustLikes(addLike: false) { likes in
+                    cell.likesLabel.text = "\(likes) likes"
+                    cell.likeButton.setImage(#imageLiteral(resourceName: "like_unselected"), for: .normal)
+                }
             }
         } else {
+            // handle like post
             post.adjustLikes(addLike: true) { likes in
                 cell.likesLabel.text = "\(likes) likes"
                 cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
@@ -142,6 +146,8 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, Fe
         
         // 내가 이미 좋아요를 눌렀었으면 검은색하트로 색을 채운다
         USER_LIKES_REF.child(currentUid).observeSingleEvent(of: .value) { snapshot in
+            
+            // check if post id exists in user-like structure
             if snapshot.hasChild(postId) {
                 post.didLike = true
                 cell.likeButton.setImage(#imageLiteral(resourceName: "like_selected"), for: .normal)
