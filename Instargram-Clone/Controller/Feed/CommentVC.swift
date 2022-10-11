@@ -15,7 +15,7 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
     // MARK: - Properties
     
     var comments = [Comment]()
-    var postId: String?
+    var post: Post?
     
     lazy var containerView: UIView = {
         let containerView = UIView()
@@ -127,7 +127,7 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
     
     @objc func handleUploadComment() {
         
-        guard let postId = self.postId else { return }
+        guard let postId = self.post?.postId else { return }
         guard let commentText = commentTextField.text else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let creationDate = Int(NSDate().timeIntervalSince1970)
@@ -137,13 +137,14 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
                       "uid": uid] as [String : Any]
         
         COMMENT_REF.child(postId).childByAutoId().updateChildValues(values) { err, ref in
+            self.uploadCommentNotificationToServer()
             self.commentTextField.text = nil
         }
     }
     
     func fetchComments() {
         
-        guard let postId = self.postId else { return }
+        guard let postId = self.post?.postId else { return }
         
         COMMENT_REF.child(postId).observe(.childAdded) { snapshot in
             
@@ -157,6 +158,26 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
                 self.collectionView.reloadData()
                 
             }
+        }
+    }
+    
+    func uploadCommentNotificationToServer() {
+        
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard let postId = post?.postId else { return }
+        guard let uid = post?.user?.uid else { return }
+        let creationDate = Int(NSDate().timeIntervalSince1970)
+        
+        // notification values
+        let values = ["checked": 0,
+                      "creationDate": creationDate,
+                      "uid": currentUid,
+                      "type": COMMENT_INT_VALUE,
+                      "postId": postId] as [String : Any]
+        
+        // upload comment norification to server
+        if uid != currentUid {
+            NOTIFICATIONS_REF.child(uid).childByAutoId().updateChildValues(values)
         }
     }
 }

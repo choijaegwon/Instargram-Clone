@@ -39,6 +39,7 @@
 		D4D424B728F5425500C136B3 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424B628F5425500C136B3 /* CommentCell.swift */; };
 		D4D424B928F559BA00C136B3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424B828F559BA00C136B3 /* Comment.swift */; };
 		D4D424BB28F58E2C00C136B3 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424BA28F58E2C00C136B3 /* NotificationCell.swift */; };
+		D4D424BD28F5B9A900C136B3 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424BC28F5B9A900C136B3 /* Notification.swift */; };
 		D4F3144128EAFC2800C132D5 /* FollowLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */; };
 		D4F3144328EAFCC500C132D5 /* FollowLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		D4D424B628F5425500C136B3 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		D4D424B828F559BA00C136B3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		D4D424BA28F58E2C00C136B3 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		D4D424BC28F5B9A900C136B3 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowLikeVC.swift; sourceTree = "<group>"; };
 		D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowLikeCell.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				D48081A428E9788900540F3C /* User.swift */,
 				D47B627128F0758B007A36AF /* Post.swift */,
 				D4D424B828F559BA00C136B3 /* Comment.swift */,
+				D4D424BC28F5B9A900C136B3 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				D480818928E4AF2400540F3C /* SignUpVC.swift in Sources */,
 				D41299C828E2274A00F550EB /* Extensions.swift in Sources */,
 				D4B7C48A28F3052F0052F3D8 /* FeedCell.swift in Sources */,
+				D4D424BD28F5B9A900C136B3 /* Notification.swift in Sources */,
 				D4F3144328EAFCC500C132D5 /* FollowLikeCell.swift in Sources */,
 				D47B626E28F01F4C007A36AF /* SelectPhotoCell.swift in Sources */,
 				D48081B328EAEC8B00540F3C /* Protocols.swift in Sources */,
