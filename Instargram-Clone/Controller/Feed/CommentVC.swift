@@ -64,6 +64,9 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
         
         // register cell class
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: resueIdentifer)
+        
+        // frtch comments
+        fetchComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +105,8 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resueIdentifer, for: indexPath) as! CommentCell
         
+        cell.comment = comments[indexPath.row]
+        
         return cell
     }
     
@@ -118,6 +123,27 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
                       "creationDtae": creationDate,
                       "uid": uid] as [String : Any]
         
-        COMMENT_REF.child(postId).childByAutoId().updateChildValues(values)
+        COMMENT_REF.child(postId).childByAutoId().updateChildValues(values) { err, ref in
+            self.commentTextField.text = nil
+        }
+    }
+    
+    func fetchComments() {
+        
+        guard let postId = self.postId else { return }
+        
+        COMMENT_REF.child(postId).observe(.childAdded) { snapshot in
+            
+            guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
+            guard let uid = dictionary["uid"] as? String else { return }
+            
+            Database.fetchUser(with: uid) { user in
+                
+                let comment = Comment(user: user, dictionary: dictionary)
+                self.comments.append(comment)
+                self.collectionView.reloadData()
+                
+            }
+        }
     }
 }
