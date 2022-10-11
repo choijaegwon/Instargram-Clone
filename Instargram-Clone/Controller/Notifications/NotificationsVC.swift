@@ -10,7 +10,7 @@ import Firebase
 
 private let resueIdentifer = "NotificationCell"
 
-class NotificationsVC: UITableViewController {
+class NotificationsVC: UITableViewController, NotificationCellDelegate {
     
     // MARK: - Properties
     
@@ -46,8 +46,56 @@ class NotificationsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: resueIdentifer, for: indexPath) as! NotificationCell
         cell.notification = notifiations[indexPath.row]
+        
+        cell.delegate = self
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let notification = notifiations[indexPath.row]
+        let userProfileVC = UserProfileVC(collectionViewLayout: UICollectionViewFlowLayout())
+        
+        userProfileVC.user = notification.user
+        navigationController?.pushViewController(userProfileVC, animated: true)
+    }
+    
+    // MARK: - NotificationCellDelegate Protocol
+    
+    // 알람에서 팔로우버튼
+    func handleFollowTapped(for cell: NotificationCell) {
+        
+        guard let user = cell.notification?.user else { return }
+        
+        if user.isFollowed {
+            user.unfollow()
+            // configure follow button for non followed user
+            cell.followButton.setTitle("Follow", for: .normal)
+            cell.followButton.setTitleColor(.white, for: .normal)
+            cell.followButton.layer.borderWidth = 0
+            cell.followButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+        } else {
+            user.follow()
+            // configure follow button for followed user
+            cell.followButton.setTitle("Following", for: .normal)
+            cell.followButton.setTitleColor(.black, for: .normal)
+            cell.followButton.layer.borderWidth = 0.5
+            cell.followButton.layer.borderColor = UIColor.lightGray.cgColor
+            cell.followButton.backgroundColor = .white
+        }
+        
+    }
+    
+    // 알람에서 사진을 누르면 그 포스트로 이동
+    func handlePostTapped(for cell: NotificationCell) {
+            
+        guard let post = cell.notification?.post else { return }
+        
+        let feedController = FeedVC(collectionViewLayout: UICollectionViewFlowLayout())
+        feedController.viewSinglePost = true
+        feedController.post = post
+        navigationController?.pushViewController(feedController, animated: true)
+    }
+
     
     // MARK: - API
     
