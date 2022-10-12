@@ -1,13 +1,13 @@
 //
-//  UserPostCell.swift
+//  SearchPostCell.swift
 //  Instargram-Clone
 //
-//  Created by Jae kwon Choi on 2022/10/08.
+//  Created by Jae kwon Choi on 2022/10/12.
 //
 
 import UIKit
 
-class UserPostCell: UICollectionViewCell {
+class SearchPostCell: UICollectionViewCell {
     
     var post: Post? {
         
@@ -35,5 +35,4 @@ class UserPostCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
