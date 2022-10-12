@@ -14,6 +14,8 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
     
     // MARK: - Properties
     
+    var timer: Timer?
+    
     var notifiations = [Notification]()
     
     override func viewDidLoad() {
@@ -67,22 +69,16 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
         guard let user = cell.notification?.user else { return }
         
         if user.isFollowed {
+            
+            // handle unfollow user
             user.unfollow()
-            // configure follow button for non followed user
-            cell.followButton.setTitle("Follow", for: .normal)
-            cell.followButton.setTitleColor(.white, for: .normal)
-            cell.followButton.layer.borderWidth = 0
-            cell.followButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
+            cell.followButton.configure(didFollow: false)
         } else {
+            
+            // hnadle follow user
             user.follow()
-            // configure follow button for followed user
-            cell.followButton.setTitle("Following", for: .normal)
-            cell.followButton.setTitleColor(.black, for: .normal)
-            cell.followButton.layer.borderWidth = 0.5
-            cell.followButton.layer.borderColor = UIColor.lightGray.cgColor
-            cell.followButton.backgroundColor = .white
+            cell.followButton.configure(didFollow: true)
         }
-        
     }
     
     // 알람에서 사진을 누르면 그 포스트로 이동
@@ -95,7 +91,20 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
         feedController.post = post
         navigationController?.pushViewController(feedController, animated: true)
     }
-
+    
+    // MARK: - Handlers
+    
+    func handleReloadTable() {
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleSortNotifications), userInfo: nil, repeats: false)
+    }
+    
+    @objc func handleSortNotifications() {
+        self.notifiations.sort { notification1, notification2 in
+            return notification1.creationDate > notification2.creationDate
+        }
+        self.tableView.reloadData()
+    }
     
     // MARK: - API
     
@@ -116,12 +125,12 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
                         
                         let norification = Notification(user: user, post: post, dictionary: dictionary)
                         self.notifiations.append(norification)
-                        self.tableView.reloadData()
+                        self.handleReloadTable()
                     }
                 } else {
                     let notification = Notification(user: user, dictionary: dictionary)
                     self.notifiations.append(notification)
-                    self.tableView.reloadData()
+                    self.handleReloadTable()
                 }
                 
             }

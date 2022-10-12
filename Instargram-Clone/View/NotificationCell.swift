@@ -87,12 +87,13 @@ class NotificationCell: UITableViewCell {
         guard let notification = self.notification else { return }
         guard let user = notification.user else { return }
         guard let username = user.username else { return }
+        guard let notificationDate = getNotificationTimeStamp() else { return }
         
         let notificationMessage = notification.notificationType.description
         
         let attributedText = NSMutableAttributedString(string: username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)])
-        attributedText.append(NSAttributedString(string: notificationMessage, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
-        attributedText.append(NSAttributedString(string: " 2d.", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        attributedText.append(NSAttributedString(string: notificationMessage, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
+        attributedText.append(NSAttributedString(string: " \(notificationDate)전.", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         notificationLabel.attributedText = attributedText
     }
     
@@ -144,6 +145,19 @@ class NotificationCell: UITableViewCell {
         addSubview(notificationLabel)
         notificationLabel.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: anchor, paddingTop: 0, paddingLeft: 8, paddingBottm: 0, paddingRight: 8, width: 0, height: 0)
         notificationLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    }
+    
+    func getNotificationTimeStamp() -> String? {
+        
+        guard let notification = self.notification else { return nil }
+        
+        let dataFormatter = DateComponentsFormatter()
+        dataFormatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        dataFormatter.maximumUnitCount = 1
+        dataFormatter.unitsStyle = .abbreviated
+        let now = Date()
+        
+        return dataFormatter.string(from: notification.creationDate, to: now)
     }
     
     // MARK: - Init

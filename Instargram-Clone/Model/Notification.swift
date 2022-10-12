@@ -17,9 +17,9 @@ class Notification {
         
         var description: String {
             switch self {
-            case .Like: return " liked your post."
-            case .Comment: return " commented on your post."
-            case .Follow: return " started following you."
+            case .Like: return " liked your post"
+            case .Comment: return " commented on your post"
+            case .Follow: return " started following you"
             }
         }
         
