@@ -114,11 +114,12 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
         
         NOTIFICATIONS_REF.child(currentUid).observe(.childAdded) { snapshot in
             
+            let notificationId = snapshot.key
+            
             guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
             guard let uid = dictionary["uid"] as? String else { return }
             
             Database.fetchUser(with: uid) { user in
-                
                 // if norification is for post
                 if let postId = dictionary["postId"] as? String {
                     Database.fetchPost(with: postId) { post in
@@ -132,12 +133,8 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
                     self.notifiations.append(notification)
                     self.handleReloadTable()
                 }
-                
             }
-            
+            NOTIFICATIONS_REF.child(currentUid).child(notificationId).child("checked").setValue(1)
         }
-        
     }
-
-    
 }

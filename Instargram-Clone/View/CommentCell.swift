@@ -45,7 +45,6 @@ class CommentCell: UICollectionViewCell {
         return tv
     }()
     
-    // 오류 있음
     func getCommentTimeStamp() -> String? {
         
         guard let comment = self.comment else { return nil }

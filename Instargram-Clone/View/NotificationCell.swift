@@ -102,15 +102,12 @@ class NotificationCell: UITableViewCell {
         guard let notification = self.notification else { return }
         guard let user = notification.user else { return }
         
-        var anchor: NSLayoutXAxisAnchor!
-        
         if notification.notificationType != .Follow {
             
             // notification type is comment or likes
             addSubview(postImageView)
             postImageView.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottm: 0, paddingRight: 8, width: 40, height: 40)
             postImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            anchor = postImageView.leftAnchor
             
         } else {
             
@@ -120,7 +117,6 @@ class NotificationCell: UITableViewCell {
             // 버튼을 Y축의 가운대로 설정
             followButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
             followButton.layer.cornerRadius = 3
-            anchor = followButton.leftAnchor
             
             user.checkIfUserIsFollwed { followed in
                 
@@ -138,12 +134,11 @@ class NotificationCell: UITableViewCell {
                     self.followButton.layer.borderWidth = 0
                     self.followButton.backgroundColor = UIColor(red: 17/255, green: 154/255, blue: 237/255, alpha: 1)
                 }
-                
             }
         }
             
         addSubview(notificationLabel)
-        notificationLabel.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: anchor, paddingTop: 0, paddingLeft: 8, paddingBottm: 0, paddingRight: 8, width: 0, height: 0)
+        notificationLabel.anchor(top: nil, left: profileImageView.rightAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 8, paddingBottm: 0, paddingRight: 8, width: 0, height: 0)
         notificationLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
     
