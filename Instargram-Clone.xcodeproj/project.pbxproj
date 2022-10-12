@@ -185,17 +185,8 @@
 		D41299C228E2247F00F550EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4D424D128F7510A00C136B3 /* Social */,
 				D4D424C428F733B600C136B3 /* Messages */,
-				D48081A228E84AD500540F3C /* UserProfileHeader.swift */,
-				D48081A628E9C13B00540F3C /* SearchUserCell.swift */,
-				D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */,
-				D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */,
-				D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */,
-				D47B627328F080D8007A36AF /* UserPostCell.swift */,
-				D4B7C48928F3052F0052F3D8 /* FeedCell.swift */,
-				D4D424B628F5425500C136B3 /* CommentCell.swift */,
-				D4D424BA28F58E2C00C136B3 /* NotificationCell.swift */,
-				D4D424BE28F6D6EA00C136B3 /* SearchPostCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -293,6 +284,23 @@
 				D4D424CF28F74DBD00C136B3 /* ChatCell.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		D4D424D128F7510A00C136B3 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				D48081A228E84AD500540F3C /* UserProfileHeader.swift */,
+				D48081A628E9C13B00540F3C /* SearchUserCell.swift */,
+				D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */,
+				D47B626D28F01F4C007A36AF /* SelectPhotoCell.swift */,
+				D47B626F28F01F82007A36AF /* SelectPhotoHeader.swift */,
+				D47B627328F080D8007A36AF /* UserPostCell.swift */,
+				D4B7C48928F3052F0052F3D8 /* FeedCell.swift */,
+				D4D424B628F5425500C136B3 /* CommentCell.swift */,
+				D4D424BA28F58E2C00C136B3 /* NotificationCell.swift */,
+				D4D424BE28F6D6EA00C136B3 /* SearchPostCell.swift */,
+			);
+			path = Social;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
