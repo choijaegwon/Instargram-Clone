@@ -125,6 +125,7 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
     
     // MARK: - Handlers
     
+    // 댓글 달때 서버로 보냄
     @objc func handleUploadComment() {
         
         guard let postId = self.post?.postId else { return }
@@ -133,7 +134,7 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
         let creationDate = Int(NSDate().timeIntervalSince1970)
         
         let values = ["commentText": commentText,
-                      "creationDtae": creationDate,
+                      "creationDate": creationDate,
                       "uid": uid] as [String : Any]
         
         COMMENT_REF.child(postId).childByAutoId().updateChildValues(values) { err, ref in
