@@ -47,7 +47,10 @@ class MessagesController: UITableViewController {
     // MARK: - Handlers
     
     @objc func handleNewMessage() {
-        print(#function)
+        let newMessageController = NewMessageController()
+        let navigationController = UINavigationController(rootViewController: newMessageController)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     func configureNavigationBar() {

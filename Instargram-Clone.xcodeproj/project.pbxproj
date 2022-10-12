@@ -43,6 +43,8 @@
 		D4D424BF28F6D6EA00C136B3 /* SearchPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424BE28F6D6EA00C136B3 /* SearchPostCell.swift */; };
 		D4D424C328F7321100C136B3 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424C228F7321100C136B3 /* MessagesController.swift */; };
 		D4D424C628F733EF00C136B3 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424C528F733EF00C136B3 /* MessageCell.swift */; };
+		D4D424C828F737EC00C136B3 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424C728F737EC00C136B3 /* NewMessageController.swift */; };
+		D4D424CA28F7387500C136B3 /* NewMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424C928F7387500C136B3 /* NewMessageCell.swift */; };
 		D4F3144128EAFC2800C132D5 /* FollowLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */; };
 		D4F3144328EAFCC500C132D5 /* FollowLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +89,8 @@
 		D4D424BE28F6D6EA00C136B3 /* SearchPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostCell.swift; sourceTree = "<group>"; };
 		D4D424C228F7321100C136B3 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		D4D424C528F733EF00C136B3 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		D4D424C728F737EC00C136B3 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		D4D424C928F7387500C136B3 /* NewMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageCell.swift; sourceTree = "<group>"; };
 		D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowLikeVC.swift; sourceTree = "<group>"; };
 		D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowLikeCell.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				D4D424C228F7321100C136B3 /* MessagesController.swift */,
+				D4D424C728F737EC00C136B3 /* NewMessageController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				D4D424C528F733EF00C136B3 /* MessageCell.swift */,
+				D4D424C928F7387500C136B3 /* NewMessageCell.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -426,7 +432,9 @@
 				D41299C828E2274A00F550EB /* Extensions.swift in Sources */,
 				D4B7C48A28F3052F0052F3D8 /* FeedCell.swift in Sources */,
 				D4D424BD28F5B9A900C136B3 /* Notification.swift in Sources */,
+				D4D424C828F737EC00C136B3 /* NewMessageController.swift in Sources */,
 				D4F3144328EAFCC500C132D5 /* FollowLikeCell.swift in Sources */,
+				D4D424CA28F7387500C136B3 /* NewMessageCell.swift in Sources */,
 				D47B626E28F01F4C007A36AF /* SelectPhotoCell.swift in Sources */,
 				D48081B328EAEC8B00540F3C /* Protocols.swift in Sources */,
 			);
