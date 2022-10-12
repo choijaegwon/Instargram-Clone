@@ -21,15 +21,12 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let containerView = UIView()
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 55)
         
-        containerView.addSubview(messageTextField)
-        messageTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 12, paddingBottm: 0, paddingRight: 20, width: 0, height: 0)
-        
-        let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         containerView.addSubview(sendButton)
-        sendButton.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottm: 0, paddingRight: 16, width: 0, height: 0)
+        sendButton.anchor(top: nil, left: nil, bottom: nil, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottm: 0, paddingRight: 8, width: 50, height: 0)
         sendButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        
+        containerView.addSubview(messageTextField)
+        messageTextField.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, bottom: containerView.bottomAnchor, right: sendButton.leftAnchor, paddingTop: 0, paddingLeft: 12, paddingBottm: 0, paddingRight: 8, width: 0, height: 0)
         
         let separatorView = UIView()
         separatorView.backgroundColor = .lightGray
@@ -45,6 +42,15 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return tf
     }()
     
+    let sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Send", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
+        return button
+    }()
+    
+    
     // MARK: - Init
     
     override func viewDidLoad() {
@@ -55,6 +61,8 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.register(ChatCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         configureNavigationBar()
+        
+        observeMessage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +92,7 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return messages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,8 +106,9 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
     // MARK: - Handlers
     
     @objc func handleSend() {
-        print(#function)
+        uploadMessageToServer()
         
+        messageTextField.text = nil
     }
     
     @objc func handleInfoTapped() {
@@ -117,4 +126,53 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
         navigationItem.rightBarButtonItem = infoBarButtonItem
     }
+    
+    // MARK: - API
+
+    func uploadMessageToServer() {
+        
+        guard let messageText = messageTextField.text else { return }
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard let user = self.user else { return }
+        guard let uid = user.uid else { return }
+        let creationDate = Int(NSDate().timeIntervalSince1970)
+        
+        let messageValues = ["creationDate": creationDate,
+                             "fromId": currentUid,
+                             "toId": user.uid as AnyObject,
+                             "messageText": messageText] as [String : Any]
+        
+        let messageRef = MESSAGES_REF.childByAutoId()
+        messageRef.updateChildValues(messageValues)
+        
+        guard let key = messageRef.key else { return }
+        
+        USER_MESSAGES_REF.child(currentUid).child(uid).updateChildValues([key: 1])
+        USER_MESSAGES_REF.child(uid).child(currentUid).updateChildValues([key: 1])
+    }
+    
+    func observeMessage() {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        guard let chatPartnerId = self.user?.uid else { return }
+        
+        USER_MESSAGES_REF.child(currentUid).child(chatPartnerId).observe(.childAdded) { snapshot in
+            let messageId = snapshot.key
+            
+            self.fetchMessage(withMessageId: messageId)
+        }
+    }
+    
+    func fetchMessage(withMessageId messageId: String) {
+        
+        MESSAGES_REF.child(messageId).observeSingleEvent(of: .value) { snapshot in
+            
+            guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
+            
+            let message = Message(dictionary: dictionary)
+            self.messages.append(message)
+            self.collectionView.reloadData()
+            
+        }
+    }
+
 }
