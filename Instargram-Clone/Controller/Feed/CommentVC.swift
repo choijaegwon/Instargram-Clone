@@ -115,9 +115,10 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resueIdentifer, for: indexPath) as! CommentCell
         
+        handleHashtagTapped(forCell: cell)
+        hadleMentionTapped(forCell: cell)
         cell.comment = comments[indexPath.row]
         
         return cell
@@ -143,6 +144,24 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
         }
     }
     
+    func handleHashtagTapped(forCell cell: CommentCell) {
+        cell.commentLabel.handleHashtagTap { hashtag in
+            let hashtagController = HashtagController(collectionViewLayout: UICollectionViewFlowLayout())
+            hashtagController.hashtag = hashtag
+            self.navigationController?.pushViewController(hashtagController, animated: true)
+        }
+    }
+    
+    func hadleMentionTapped(forCell cell: CommentCell) {
+        cell.commentLabel.handleMentionTap { username in
+            print("\(username)")
+            self.getMentionedUser(withUsername: username)
+        }
+    }
+    
+    
+    // MARK: - API
+    
     func fetchComments() {
         
         guard let postId = self.post?.postId else { return }
@@ -161,6 +180,27 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
             }
         }
     }
+    
+    func getMentionedUser(withUsername username: String) {
+        
+        USER_REF.observe(.childAdded) { snapshot in
+            let uid = snapshot.key
+            
+            USER_REF.child(uid).observeSingleEvent(of: .value) { snapshot in
+                guard let dictionary = snapshot.value as? Dictionary<String, AnyObject> else { return }
+                
+                if username == dictionary["username"] as? String {
+                    Database.fetchUser(with: uid) { user in
+                        let userProfileController = UserProfileVC(collectionViewLayout: UICollectionViewFlowLayout())
+                        userProfileController.user = user
+                        self.navigationController?.pushViewController(userProfileController, animated: true)
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
     
     func uploadCommentNotificationToServer() {
         
@@ -181,4 +221,7 @@ class CommentVC: UICollectionViewController, UICollectionViewDelegateFlowLayout 
             NOTIFICATIONS_REF.child(uid).childByAutoId().updateChildValues(values)
         }
     }
+    
+    
+    
 }

@@ -6,27 +6,18 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class CommentCell: UICollectionViewCell {
     
     var comment: Comment? {
         
         didSet {
-            
             guard let user = comment?.user else { return }
             guard let profileImageUrl = user.profileImageUrl else { return }
-            guard let username = user.username else { return }
-            guard let commentText = comment?.commentText else { return }
-            guard let timestamp = getCommentTimeStamp() else { return }
             
             profileImageView.loadImage(with: profileImageUrl)
-            
-            let attributedText = NSMutableAttributedString(string: username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)])
-            attributedText.append(NSAttributedString(string: " " + commentText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
-            attributedText.append(NSAttributedString(string: " \(timestamp)전.", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
-            
-            commentTextView.attributedText = attributedText
-            
+            configureCommentLabel()
         }
     }
     
@@ -38,24 +29,12 @@ class CommentCell: UICollectionViewCell {
         return iv
     }()
     
-    let commentTextView: UITextView = {
-        let tv = UITextView()
-        tv.font = UIFont.systemFont(ofSize: 12)
-        tv.isScrollEnabled = false
-        return tv
+    let commentLabel: ActiveLabel  = {
+        let label = ActiveLabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        return label
     }()
-    
-    func getCommentTimeStamp() -> String? {
-        
-        guard let comment = self.comment else { return nil }
-        
-        let dateFormatter = DateComponentsFormatter()
-        dateFormatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
-        dateFormatter.maximumUnitCount = 1
-        dateFormatter.unitsStyle = .abbreviated
-        let now = Date()
-        return dateFormatter.string(from: comment.creationDate, to: now)
-    }
     
     // MARK: - Init
     
@@ -68,12 +47,57 @@ class CommentCell: UICollectionViewCell {
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         profileImageView.layer.cornerRadius = 40 / 2
         
-        addSubview(commentTextView)
-        commentTextView.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottm: 4, paddingRight: 4, width: 0, height: 0)
+        addSubview(commentLabel)
+        commentLabel.anchor(top: topAnchor, left: profileImageView.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottm: 4, paddingRight: 4, width: 0, height: 0)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Handlers
+    
+    func configureCommentLabel() {
+        guard let comment = self.comment else { return }
+        guard let user = comment.user else { return }
+        guard let username = user.username else { return }
+        guard let commentText = comment.commentText else { return }
+        
+        let customType = ActiveType.custom(pattern: "^\(username)\\b")
+        
+        commentLabel.enabledTypes = [.hashtag, .mention, .url, customType]
+        
+        commentLabel.configureLinkAttribute = { (type, attributes, isSelected) in
+            var atts = attributes
+            
+            switch type {
+            case .custom:
+                atts[NSAttributedString.Key.font] = UIFont.boldSystemFont(ofSize: 12)
+            default: ()
+            }
+            return atts
+        }
+        
+        commentLabel.customize { label in
+            label.text = "\(username) \(commentText)"
+            label.customColor[customType] = .black
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.textColor = .black
+            label.numberOfLines = 0
+        }
+    }
+    
+    func getCommentTimeStamp() -> String? {
+        
+        guard let comment = self.comment else { return nil }
+        
+        let dateFormatter = DateComponentsFormatter()
+        dateFormatter.allowedUnits = [.second, .minute, .hour, .day, .weekOfMonth]
+        dateFormatter.maximumUnitCount = 1
+        dateFormatter.unitsStyle = .abbreviated
+        let now = Date()
+        return dateFormatter.string(from: comment.creationDate, to: now)
+    }
+
     
 }
