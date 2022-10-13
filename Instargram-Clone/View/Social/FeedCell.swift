@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import ActiveLabel
 
 class FeedCell: UICollectionViewCell {
     
@@ -115,12 +116,9 @@ class FeedCell: UICollectionViewCell {
         return label
     }()
     
-    let captionLabel: UILabel = {
-        let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)])
-        
-        attributedText.append(NSAttributedString(string: " Some test caption for now", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)]))
-        label.attributedText = attributedText
+    let captionLabel: ActiveLabel = {
+        let label = ActiveLabel()
+        label.numberOfLines = 0
         return label
     }()
     
@@ -199,12 +197,34 @@ class FeedCell: UICollectionViewCell {
         
         guard let post = self.post else { return }
         guard let capion = post.caption else { return }
+        guard let username = post.user?.username else { return }
         
-        let attributedText = NSMutableAttributedString(string: user.username, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)])
+        // look for username as pattern
+        let customType = ActiveType.custom(pattern: "^\(username)\\b")
         
-        attributedText.append(NSAttributedString(string: " \(capion)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)]))
+        // enable username as custom type
+        captionLabel.enabledTypes = [.mention, .hashtag, .url, customType]
         
-        captionLabel.attributedText = attributedText
+        // configure username link attrivutes
+        captionLabel.configureLinkAttribute = { (type, attributes, isSelected) in
+            var atts = attributes
+            
+            switch type {
+            case .custom:
+                atts[NSAttributedString.Key.font] = UIFont.boldSystemFont(ofSize: 12)
+            default: ()
+            }
+            return atts
+        }
+        captionLabel.customize { label in
+            label.text = "\(username) \(capion)"
+            label.customColor[customType] = .black
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.textColor = .black
+            captionLabel.numberOfLines = 2
+        }
+        
+        postTimeLabel.text = "2 DAYS AGO"
     }
     
     func configureActionButtons() {

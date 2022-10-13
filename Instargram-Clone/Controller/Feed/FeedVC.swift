@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import ActiveLabel
 
 private let reuseIdentifier = "Cell"
 
@@ -86,6 +87,8 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, Fe
         } else {
             cell.post = posts[indexPath.item]
         }
+        
+        handleHashtagTapped(forCell: cell)
         
         return cell
     }
@@ -175,6 +178,12 @@ class FeedVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, Fe
     @objc func handleShowMessages() {
         let messagesController = MessagesController()
         navigationController?.pushViewController(messagesController, animated: true)
+    }
+    
+    func handleHashtagTapped(forCell cell: FeedCell) {
+        cell.captionLabel.handleHashtagTap { hashtag in
+            print("\(hashtag)")
+        }
     }
     
     func configureNavigationBar() {
