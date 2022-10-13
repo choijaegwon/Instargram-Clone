@@ -5,8 +5,8 @@
 //  Created by Jae kwon Choi on 2022/10/13.
 //
 
-import Foundation
 import UIKit
+import Firebase
 
 class ChatCell: UICollectionViewCell {
     
@@ -15,6 +15,22 @@ class ChatCell: UICollectionViewCell {
     var bubbleWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
+    
+    var message: Message? {
+        
+        didSet {
+            
+            guard let messageText = message?.messageText else { return }
+            textView.text = messageText
+            
+            guard let chatPartnerId = message?.getChatPartnerId() else { return }
+            
+            Database.fetchUser(with: chatPartnerId) { user in
+                guard let profileImageUrl = user.profileImageUrl else { return }
+                self.profileImageView.loadImage(with: profileImageUrl)
+            }
+        }
+    }
     
     let bubbleView: UIView = {
         let view = UIView()
@@ -63,7 +79,7 @@ class ChatCell: UICollectionViewCell {
         bubbleViewRightAnchor?.isActive = true
         
         // bubble view left anchor
-        bubbleViewLeftAnchor = bubbleView.rightAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
+        bubbleViewLeftAnchor = bubbleView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8)
         bubbleViewLeftAnchor?.isActive = false
         
         // bubble view width and top anchor
