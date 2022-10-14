@@ -47,7 +47,7 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if notifiations.count > 4 {
+        if notifiations.count > 9 {
             if indexPath.item == notifiations.count - 1 {
                 fetchNotifications()
             }
@@ -147,7 +147,7 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
         
         if currentKey == nil {
-            NOTIFICATIONS_REF.child(currentUid).queryLimited(toLast: 5).observeSingleEvent(of: .value) { snapshot in
+            NOTIFICATIONS_REF.child(currentUid).queryLimited(toLast: 10).observeSingleEvent(of: .value) { snapshot in
             
                 guard let first = snapshot.children.allObjects.first as? DataSnapshot else { return }
                 guard let allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -160,7 +160,7 @@ class NotificationsVC: UITableViewController, NotificationCellDelegate {
             }
         } else {
             
-            NOTIFICATIONS_REF.child(currentUid).queryOrderedByKey().queryEnding(atValue: self.currentKey).queryLimited(toLast: 6).observeSingleEvent(of: .value) { snapshot in
+            NOTIFICATIONS_REF.child(currentUid).queryOrderedByKey().queryEnding(atValue: self.currentKey).queryLimited(toLast: 9).observeSingleEvent(of: .value) { snapshot in
                 
                 guard let first = snapshot.children.allObjects.first as? DataSnapshot else { return }
                 guard let allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
