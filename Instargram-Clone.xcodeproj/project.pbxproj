@@ -50,6 +50,7 @@
 		D4D424D028F74DBD00C136B3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424CF28F74DBD00C136B3 /* ChatCell.swift */; };
 		D4D424D328F8308C00C136B3 /* HashtagController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424D228F8308C00C136B3 /* HashtagController.swift */; };
 		D4D424D528F8315B00C136B3 /* HashtagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424D428F8315B00C136B3 /* HashtagCell.swift */; };
+		D4D424D728F9F86300C136B3 /* EditProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D424D628F9F86300C136B3 /* EditProfileController.swift */; };
 		D4F3144128EAFC2800C132D5 /* FollowLikeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */; };
 		D4F3144328EAFCC500C132D5 /* FollowLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		D4D424CF28F74DBD00C136B3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		D4D424D228F8308C00C136B3 /* HashtagController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagController.swift; sourceTree = "<group>"; };
 		D4D424D428F8315B00C136B3 /* HashtagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagCell.swift; sourceTree = "<group>"; };
+		D4D424D628F9F86300C136B3 /* EditProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileController.swift; sourceTree = "<group>"; };
 		D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowLikeVC.swift; sourceTree = "<group>"; };
 		D4F3144228EAFCC500C132D5 /* FollowLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowLikeCell.swift; sourceTree = "<group>"; };
 		DB0F65177A6C408801AA1AA2 /* Pods-Instargram-Clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instargram-Clone.debug.xcconfig"; path = "Target Support Files/Pods-Instargram-Clone/Pods-Instargram-Clone.debug.xcconfig"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 			children = (
 				D480819A28E72CB900540F3C /* UserProfileVC.swift */,
 				D4F3144028EAFC2800C132D5 /* FollowLikeVC.swift */,
+				D4D424D628F9F86300C136B3 /* EditProfileController.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				D4D424CC28F73C1700C136B3 /* Message.swift in Sources */,
 				D47B626C28F01E22007A36AF /* SelectImageVC.swift in Sources */,
 				D47B627028F01F82007A36AF /* SelectPhotoHeader.swift in Sources */,
+				D4D424D728F9F86300C136B3 /* EditProfileController.swift in Sources */,
 				D4D424BF28F6D6EA00C136B3 /* SearchPostCell.swift in Sources */,
 				D4D424D328F8308C00C136B3 /* HashtagController.swift in Sources */,
 				D4D424BB28F58E2C00C136B3 /* NotificationCell.swift in Sources */,
