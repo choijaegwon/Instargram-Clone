@@ -25,6 +25,9 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         // Register cell classes
         self.collectionView!.register(UserPostCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView!.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        // configure refresh control
+        configureRefreshControl()
 
         // background color
         self.collectionView.backgroundColor = .white
@@ -111,6 +114,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         
         let feedVC = FeedVC(collectionViewLayout: UICollectionViewFlowLayout())
         feedVC.viewSinglePost = true
+        feedVC.userProfileController = self
         feedVC.post = posts[indexPath.item]
         navigationController?.pushViewController(feedVC, animated: true)
         
@@ -186,7 +190,23 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
             attributedText.append(NSAttributedString(string: "followering", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
             
             header.followingLabel.attributedText = attributedText
-        }    }
+        }
+    }
+    
+    // MARK: - Handlers
+    
+    @objc func handleRefresh() {
+        posts.removeAll(keepingCapacity: false)
+        self.currentKey = nil
+        fetchPosts()
+        collectionView.reloadData()
+    }
+    
+    func configureRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
 
     
     // MARK: - API
@@ -204,7 +224,7 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         // initial data pull
         if currentKey == nil {
             
-            USER_POSTS_REF.child(uid).queryLimited(toLast: 3).observeSingleEvent(of: .value) { snapshot in
+            USER_POSTS_REF.child(uid).queryLimited(toLast: 10).observeSingleEvent(of: .value) { snapshot in
                 
                 self.collectionView.refreshControl?.endRefreshing()
                 
@@ -220,8 +240,8 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
             }
         } else {
             
-            USER_POSTS_REF.child(uid).queryOrderedByKey().queryEnding(atValue: self.currentKey).queryLimited(toLast: 7).observeSingleEvent(of: .value) { snapshot in
-                
+            USER_POSTS_REF.child(uid).queryOrderedByKey().queryEnding(atValue: self.currentKey).queryLimited(toLast: 4).observeSingleEvent(of: .value) { snapshot in
+                print(snapshot)
                 guard let first = snapshot.children.allObjects.first as? DataSnapshot else { return }
                 guard let allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
                 
