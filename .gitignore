@@ -90,3 +90,6 @@ fastlane/test_output
 iOSInjectionProject/
 GoogleService-Info.plist
 node_modules/
+functions/
+.firebaserc
+firebase.json
