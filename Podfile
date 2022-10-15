@@ -11,5 +11,6 @@ target 'Instargram-Clone' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'ActiveLabel'
+  pod 'Firebase/Messaging'
 
 end

@@ -6,10 +6,12 @@
 //
 
 import UIKit
-import FirebaseCore
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var window: UIWindow?
 
@@ -20,17 +22,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 루트 뷰 설정
         window = UIWindow()
-
         // 홈 화면이 처음 나오게 설정
         window?.rootViewController = MainTabVC()
         
-        // 로그인 화면이 처음 나오게 설정
-        //window?.rootViewController = UINavigationController(rootViewController: LoginVC())
-        
+        attemptToRegisterForNotifications(application: application)
         
         return true
     }
-
+    
+    func attemptToRegisterForNotifications(application: UIApplication) {
+        
+        Messaging.messaging().delegate = self
+        
+        UNUserNotificationCenter.current().delegate = self
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { authorized, error in
+            if authorized {
+                print("DEBUG: SUCCESSFULLY REGISTERED FOR NOTIFICATIONS")
+            }
+        }
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("DEBUG: Registered for notifications with device token: ", deviceToken)
+    }
+    
+    // 등록 토큰 가져오기 나중에 업데이트하고 연결해서 테스트 하면 됨.
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("DEBUG: Registered with FCM Token: ", fcmToken)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
