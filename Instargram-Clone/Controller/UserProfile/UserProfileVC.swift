@@ -143,6 +143,8 @@ class UserProfileVC: UICollectionViewController, UICollectionViewDelegateFlowLay
         if header.editProfileFollowButton.titleLabel?.text == "Edit Profile" {
             
             let editProfileController = EditProfileController()
+            editProfileController.user = user
+            editProfileController.userProfileController = self
             let navigationController = UINavigationController(rootViewController: editProfileController)
             navigationController.modalPresentationStyle = .fullScreen
             present(navigationController, animated: true, completion: nil)
