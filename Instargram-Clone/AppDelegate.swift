@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("DEBUG: Registered for notifications with device token: ", deviceToken)
     }
     
-    // 등록 토큰 가져오기 나중에 업데이트하고 연결해서 테스트 하면 됨.
+    // 등록 토큰 가져오기 전체알림 테스트할때 사용.
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("DEBUG: Registered with FCM Token: ", fcmToken)
     }
